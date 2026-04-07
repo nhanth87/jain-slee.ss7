@@ -474,13 +474,13 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 			this.sleeEndpoint = resourceAdaptorContext.getSleeEndpoint();
 
-			this.realProvider.getMAPServiceMobility().acivate();
-			this.realProvider.getMAPServiceCallHandling().acivate();
-			this.realProvider.getMAPServiceOam().acivate();
-			this.realProvider.getMAPServicePdpContextActivation().acivate();
-			this.realProvider.getMAPServiceSupplementary().acivate();
-			this.realProvider.getMAPServiceSms().acivate();
-			this.realProvider.getMAPServiceLsm().acivate();
+			this.realProvider.getMAPServiceMobility().activate();
+			this.realProvider.getMAPServiceCallHandling().activate();
+			this.realProvider.getMAPServiceOam().activate();
+			this.realProvider.getMAPServicePdpContextActivation().activate();
+			this.realProvider.getMAPServiceSupplementary().activate();
+			this.realProvider.getMAPServiceSms().activate();
+			this.realProvider.getMAPServiceLsm().activate();
 
 			this.mapProvider.setWrappedProvider(this.realProvider);
 		} catch (Exception e) {

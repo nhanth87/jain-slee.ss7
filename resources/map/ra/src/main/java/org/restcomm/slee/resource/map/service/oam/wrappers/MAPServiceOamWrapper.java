@@ -52,8 +52,8 @@ public class MAPServiceOamWrapper implements MAPServiceOam {
 		this.mapProviderWrapper = mapProviderWrapper;
 	}
 
-	public void acivate() {
-		throw new UnsupportedOperationException();
+	public void activate() {
+		this.wrappedOam.activate();
 	}
 
 	public void deactivate() {

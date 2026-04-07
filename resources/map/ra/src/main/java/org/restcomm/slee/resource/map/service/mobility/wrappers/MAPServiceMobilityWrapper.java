@@ -34,8 +34,8 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
 		return this.mapProviderWrapper;
 	}
 
-	public void acivate() {
-		throw new UnsupportedOperationException();
+	public void activate() {
+		this.wrappedMobility.activate();
 	}
 
 	public void deactivate() {

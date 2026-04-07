@@ -59,9 +59,8 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	 * 
 	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
-	public void acivate() {
-		throw new UnsupportedOperationException();
-
+	public void activate() {
+		this.wrappedUSSD.activate();
 	}
 
 	/*

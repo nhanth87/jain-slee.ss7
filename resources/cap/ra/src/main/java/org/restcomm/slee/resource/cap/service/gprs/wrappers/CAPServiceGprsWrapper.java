@@ -52,8 +52,9 @@ public class CAPServiceGprsWrapper implements CAPServiceGprs {
 		this.capProviderWrapper = capProviderWrapper;
 	}
 
-	public void acivate() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void activate() {
+		this.wrappedGprs.activate();
 	}
 
 	public void deactivate() {

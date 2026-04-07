@@ -52,8 +52,8 @@ public class MAPServicePdpContextActivationWrapper implements MAPServicePdpConte
 		this.mapProviderWrapper = mapProviderWrapper;
 	}
 
-	public void acivate() {
-		throw new UnsupportedOperationException();
+	public void activate() {
+		this.wrappedPdpContextActivation.activate();
 	}
 
 	public void deactivate() {

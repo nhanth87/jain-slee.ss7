@@ -67,8 +67,8 @@ public class SendRoutingInformationRequestWrapper extends CallHandlingMessageWra
 		return this.wrappedEvent.getNumberOfForwarding();
 	}
 
-	public InterrogationType getInterogationType() {
-		return this.wrappedEvent.getInterogationType();
+	public InterrogationType getInterrogationType() {
+		return this.wrappedEvent.getInterrogationType();
 	}
 
 	public boolean getORInterrogation() {

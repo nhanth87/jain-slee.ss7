@@ -57,9 +57,8 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	 * 
 	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
-	public void acivate() {
-		throw new UnsupportedOperationException();
-
+	public void activate() {
+		this.wrappedSMS.activate();
 	}
 
 	/*
