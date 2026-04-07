@@ -364,9 +364,9 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 
 			this.sleeEndpoint = resourceAdaptorContext.getSleeEndpoint();
 
-			this.realProvider.getCAPServiceCircuitSwitchedCall().acivate();
-			this.realProvider.getCAPServiceGprs().acivate();
-			this.realProvider.getCAPServiceSms().acivate();
+			this.realProvider.getCAPServiceCircuitSwitchedCall().activate();
+			this.realProvider.getCAPServiceGprs().activate();
+			this.realProvider.getCAPServiceSms().activate();
 
 			this.capProvider.setWrappedProvider(this.realProvider);
 		} catch (Exception e) {

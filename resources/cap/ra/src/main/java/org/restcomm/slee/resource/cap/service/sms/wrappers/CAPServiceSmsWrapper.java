@@ -51,8 +51,9 @@ public class CAPServiceSmsWrapper implements CAPServiceSms {
 		this.capProviderWrapper = capProviderWrapper;
 	}
 
-	public void acivate() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void activate() {
+		this.wrappedSms.activate();
 	}
 
 	public void deactivate() {

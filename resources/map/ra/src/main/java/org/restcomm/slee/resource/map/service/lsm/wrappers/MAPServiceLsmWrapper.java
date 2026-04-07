@@ -56,9 +56,8 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 	 * 
 	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
-	public void acivate() {
-		throw new UnsupportedOperationException();
-
+	public void activate() {
+		this.wrappedLSM.activate();
 	}
 	
 	/*

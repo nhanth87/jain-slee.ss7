@@ -52,8 +52,9 @@ public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSw
 		this.capProviderWrapper = capProviderWrapper;
 	}
 
-	public void acivate() {
-		throw new UnsupportedOperationException();
+	@Override
+	public void activate() {
+		this.wrappedCircuitSwitchedCall.activate();
 	}
 
 	public void deactivate() {

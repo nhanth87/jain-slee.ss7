@@ -28,6 +28,7 @@ import org.restcomm.protocols.ss7.map.api.MAPException;
 import org.restcomm.protocols.ss7.map.api.datacoding.CBSDataCodingScheme;
 import org.restcomm.protocols.ss7.map.api.primitives.AddressString;
 import org.restcomm.protocols.ss7.map.api.primitives.AlertingPattern;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.restcomm.protocols.ss7.map.api.primitives.EMLPPPriority;
 import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
 import org.restcomm.protocols.ss7.map.api.primitives.USSDString;
@@ -235,13 +236,18 @@ public class MAPDialogSupplementaryWrapper extends MAPDialogWrapper<MAPDialogSup
     }
 
     @Override
-    public Boolean isDoNotSendProtcolVersion() {
-        return this.wrappedDialog.isDoNotSendProtcolVersion();
+    public Boolean isDoNotSendProtocolVersion() {
+        return this.wrappedDialog.isDoNotSendProtocolVersion();
     }
 
     @Override
     public void setDoNotSendProtocolVersion(Boolean isSendProtocolVersion) {
         this.wrappedDialog.setDoNotSendProtocolVersion(isSendProtocolVersion);
+    }
+
+    @Override
+    public void setExtensionContainer(MAPExtensionContainer ec) {
+        this.wrappedDialog.setExtensionContainer(ec);
     }
 
 }

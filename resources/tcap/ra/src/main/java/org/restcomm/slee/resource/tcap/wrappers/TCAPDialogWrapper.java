@@ -265,11 +265,11 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#isEstabilished()
+	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#isEstablished()
 	 */
 	@Override
-	public boolean isEstabilished() {
-		return this.wrappedDialog.isEstabilished();
+	public boolean isEstablished() {
+		return this.wrappedDialog.isEstablished();
 	}
 
 	/*
@@ -457,8 +457,8 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
     }
 
     @Override
-    public Boolean isDoNotSendProtcolVersion() {
-        return this.wrappedDialog.isDoNotSendProtcolVersion();
+    public Boolean isDoNotSendProtocolVersion() {
+        return this.wrappedDialog.isDoNotSendProtocolVersion();
     }
 
     @Override

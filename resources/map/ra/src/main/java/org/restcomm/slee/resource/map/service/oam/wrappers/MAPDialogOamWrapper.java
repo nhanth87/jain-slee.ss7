@@ -98,13 +98,18 @@ public class MAPDialogOamWrapper extends MAPDialogWrapper<MAPDialogOam> implemen
     }
 
     @Override
-    public Boolean isDoNotSendProtcolVersion() {
-        return this.wrappedDialog.isDoNotSendProtcolVersion();
+    public Boolean isDoNotSendProtocolVersion() {
+        return this.wrappedDialog.isDoNotSendProtocolVersion();
     }
 
     @Override
     public void setDoNotSendProtocolVersion(Boolean isSendProtocolVersion) {
         this.wrappedDialog.setDoNotSendProtocolVersion(isSendProtocolVersion);
+    }
+
+    @Override
+    public void setExtensionContainer(MAPExtensionContainer ec) {
+        this.wrappedDialog.setExtensionContainer(ec);
     }
 
 }

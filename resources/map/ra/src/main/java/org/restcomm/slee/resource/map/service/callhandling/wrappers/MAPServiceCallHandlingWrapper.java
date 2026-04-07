@@ -53,8 +53,8 @@ public class MAPServiceCallHandlingWrapper implements MAPServiceCallHandling {
 		this.mapProviderWrapper = mapProviderWrapper;
 	}
 
-	public void acivate() {
-		throw new UnsupportedOperationException();
+	public void activate() {
+		this.wrappedCallHandling.activate();
 	}
 
 	public void deactivate() {

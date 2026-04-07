@@ -208,8 +208,8 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 		this.wrappedDialog.sendReturnResultLastComponent(arg0);
 	}
 
-	public void setExtentionContainer(MAPExtensionContainer arg0) {
-		this.wrappedDialog.setExtentionContainer(arg0);
+	public void setExtensionContainer(MAPExtensionContainer arg0) {
+		this.wrappedDialog.setExtensionContainer(arg0);
 	}
 
 	public void setUserObject(Object arg0) {
