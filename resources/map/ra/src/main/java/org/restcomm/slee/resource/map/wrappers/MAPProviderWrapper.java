@@ -22,7 +22,7 @@
 
 package org.restcomm.slee.resource.map.wrappers;
 
-import javolution.util.FastMap;
+import java.util.Map;
 
 import org.restcomm.protocols.ss7.map.api.MAPDialog;
 import org.restcomm.protocols.ss7.map.api.MAPDialogListener;
@@ -223,7 +223,7 @@ public class MAPProviderWrapper implements MAPProvider {
     }
 
     @Override
-    public FastMap<Integer, NetworkIdState> getNetworkIdStateList() {
+    public Map<Integer, NetworkIdState> getNetworkIdStateList() {
         if (this.wrappedProvider == null) {
             throw new IllegalStateException("RA is has not been activated.");
         }

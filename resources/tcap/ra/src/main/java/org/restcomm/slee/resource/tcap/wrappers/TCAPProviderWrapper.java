@@ -22,7 +22,7 @@
 
 package org.restcomm.slee.resource.tcap.wrappers;
 
-import javolution.util.FastMap;
+import java.util.Map;
 
 import org.restcomm.protocols.ss7.sccp.NetworkIdState;
 import org.restcomm.protocols.ss7.sccp.parameter.SccpAddress;
@@ -178,7 +178,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
     }
 
     @Override
-    public FastMap<Integer, NetworkIdState> getNetworkIdStateList() {
+    public Map<Integer, NetworkIdState> getNetworkIdStateList() {
         if (this.wrappedProvider == null) {
             throw new IllegalStateException("RA is has not been activated.");
         }

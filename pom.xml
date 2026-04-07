@@ -36,6 +36,7 @@
 		<asn.version>2.2.0-143</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
 		<javolution.version>5.5.1</javolution.version>
+		<jctools.version>4.0.3</jctools.version>
 		<restcomm.slee.ext.version>7.0.70</restcomm.slee.ext.version>
 		<restcomm.load.balancer.version>10.1.0-53</restcomm.load.balancer.version>
 		<java.version>11</java.version>
@@ -177,6 +178,16 @@
 			</snapshots>
 		</repository>
 	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jctools</groupId>
+				<artifactId>jctools-core</artifactId>
+				<version>${jctools.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>

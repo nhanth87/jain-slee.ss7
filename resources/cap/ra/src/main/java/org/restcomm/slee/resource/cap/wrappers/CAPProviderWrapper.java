@@ -22,7 +22,7 @@
 
 package org.restcomm.slee.resource.cap.wrappers;
 
-import javolution.util.FastMap;
+import java.util.Map;
 
 import org.restcomm.protocols.ss7.cap.api.CAPDialog;
 import org.restcomm.protocols.ss7.cap.api.CAPDialogListener;
@@ -142,7 +142,7 @@ public class CAPProviderWrapper implements CAPProvider {
     }
 
     @Override
-    public FastMap<Integer, NetworkIdState> getNetworkIdStateList() {
+    public Map<Integer, NetworkIdState> getNetworkIdStateList() {
         if (this.wrappedProvider == null) {
             throw new IllegalStateException("RA is has not been activated.");
         }
