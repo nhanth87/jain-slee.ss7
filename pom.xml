@@ -9,7 +9,7 @@
 
 	<groupId>org.restcomm.servers.jainslee.ss7</groupId>
 	<artifactId>restcomm-slee-ss7</artifactId>
-	<version>9.0.0-215</version>
+	<version>9.2.0</version>
 
 	<packaging>pom</packaging>
 
@@ -29,13 +29,12 @@
 	</modules>
 
 	<properties>
-		<ss7.version>9.0.0-318</ss7.version> <!-- 9.0.0-215 8.0.0-145 -->
+		<ss7.version>9.2.0</ss7.version>
 		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
 
-		<sctp.version>2.0.2-17</sctp.version>
+		<sctp.version>2.0.3-23</sctp.version>
 		<asn.version>2.2.0-143</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
-		<javolution.version>5.5.1</javolution.version>
 		<jctools.version>4.0.3</jctools.version>
 		<restcomm.slee.ext.version>7.0.70</restcomm.slee.ext.version>
 		<restcomm.load.balancer.version>10.1.0-53</restcomm.load.balancer.version>
@@ -185,6 +184,11 @@
 				<groupId>org.jctools</groupId>
 				<artifactId>jctools-core</artifactId>
 				<version>${jctools.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>1.4.20</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
