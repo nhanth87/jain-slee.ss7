@@ -16,9 +16,9 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>javolution</groupId>
-			<artifactId>javolution</artifactId>
-			<version>${javolution.version}</version>
+			<groupId>org.jctools</groupId>
+			<artifactId>jctools-core</artifactId>
+			<version>4.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.restcomm.resources</groupId>

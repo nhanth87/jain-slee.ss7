@@ -37,6 +37,11 @@
       <artifactId>m3ua-impl</artifactId>
       <groupId>org.restcomm.protocols.ss7.m3ua</groupId>
     </dependency>
+    <dependency>
+      <groupId>org.jctools</groupId>
+      <artifactId>jctools-core</artifactId>
+      <version>4.0.3</version>
+    </dependency>
 
   </dependencies>
 
