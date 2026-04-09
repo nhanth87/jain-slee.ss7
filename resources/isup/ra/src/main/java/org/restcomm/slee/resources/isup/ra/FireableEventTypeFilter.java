@@ -26,7 +26,6 @@
  */
 package org.restcomm.slee.resources.isup.ra;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -80,7 +79,7 @@ public class FireableEventTypeFilter {
         	{
         		servicesReceivingEvent = eventID2serviceIDs.get(receivableEvent.getEventType());
         		if (servicesReceivingEvent == null) {
-        			servicesReceivingEvent = new HashSet<ServiceID>();
+        			servicesReceivingEvent = ConcurrentHashMap.newKeySet();
         			Set<ServiceID> anotherSet = eventID2serviceIDs.putIfAbsent(receivableEvent.getEventType(), servicesReceivingEvent);
         			if (anotherSet != null) {
         				servicesReceivingEvent = anotherSet;
@@ -91,7 +90,7 @@ public class FireableEventTypeFilter {
         	{
         		servicesReceivingEvent = initialEventID2serviceIDs.get(receivableEvent.getEventType());
         		if (servicesReceivingEvent == null) {
-        			servicesReceivingEvent = new HashSet<ServiceID>();
+        			servicesReceivingEvent = ConcurrentHashMap.newKeySet();
         			Set<ServiceID> anotherSet = initialEventID2serviceIDs.putIfAbsent(receivableEvent.getEventType(), servicesReceivingEvent);
         			if (anotherSet != null) {
         				servicesReceivingEvent = anotherSet;
@@ -99,9 +98,7 @@ public class FireableEventTypeFilter {
         		}
         	}
         	
-            synchronized (servicesReceivingEvent) {
-                servicesReceivingEvent.add(receivableService.getService());
-            }
+            servicesReceivingEvent.add(receivableService.getService());
         }
     }
 
@@ -116,9 +113,7 @@ public class FireableEventTypeFilter {
         for (ReceivableEvent receivableEvent : receivableService.getReceivableEvents()) {
             Set<ServiceID> servicesReceivingEvent = eventID2serviceIDs.get(receivableEvent.getEventType());
             if (servicesReceivingEvent != null) {
-                synchronized (servicesReceivingEvent) {
-                    servicesReceivingEvent.remove(receivableService.getService());
-                }
+                servicesReceivingEvent.remove(receivableService.getService());
             }
         }
     }
