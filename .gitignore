@@ -1,37 +1,23 @@
-# Java compiled #
-#################
-*.class
+# Hidden directories
+.minimax/
+.min*/
+.*/**
 
-# IDE #
-###########
-.classpath
-.project
-.settings
-.idea
+# IDE
+.idea/
+.vscode/
 *.iml
 
-# Maven #
-#########
-target
+# Build outputs
+target/
+*.class
+*.jar
+*.war
 
-# OS generated files #
-######################
+# Logs
+*.log
+logs/
+
+# OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
 Thumbs.db
-
-# SLEE
-${release.dir}
-${env.JBOSS_HOME}
-resources/cap/docs/sources-restcomm/src/
-resources/isup/docs/sources-restcomm/src/
-resources/map/docs/sources-restcomm/src/
-resources/tcap/docs/sources-restcomm/src/
-
-# temp files
-*~
