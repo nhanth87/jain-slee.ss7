@@ -204,4 +204,20 @@ public class SubscriberLocationReportRequestWrapper extends LsmMessageWrapper<Su
 		return this.wrappedEvent.getReportingPLMNList();
 	}
 
+	@Override
+	public org.restcomm.protocols.ss7.map.api.service.lsm.UtranCivicAddress getUtranCivicAddress() {
+		return this.wrappedEvent.getUtranCivicAddress();
+	}
+
+
+	@Override
+	public org.restcomm.protocols.ss7.map.api.service.lsm.UtranBaroPressureMeas getUtranBaroPressureMeas() {
+		return this.wrappedEvent.getUtranBaroPressureMeas();
+	}
+
+	@Override
+	public org.restcomm.protocols.ss7.map.api.service.lsm.UtranAdditionalPositioningData getUtranAdditionalPositioningData() {
+		return this.wrappedEvent.getUtranAdditionalPositioningData();
+	}
+
 }
