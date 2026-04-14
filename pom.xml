@@ -29,9 +29,9 @@
 	</modules>
 
 	<properties>
-		<ss7.version>9.2.7</ss7.version>
+		<ss7.version>9.2.8-SNAPSHOT</ss7.version>
 		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
-		<sctp.version>2.0.11</sctp.version>
+		<sctp.version>2.0.12</sctp.version>
 		<asn.version>2.2.0-143</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
 		<jctools.version>4.0.3</jctools.version>
@@ -183,11 +183,6 @@
 				<groupId>org.jctools</groupId>
 				<artifactId>jctools-core</artifactId>
 				<version>${jctools.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.thoughtworks.xstream</groupId>
-				<artifactId>xstream</artifactId>
-				<version>1.4.20</version>
 			</dependency>
 			<!-- Force jSS7 9.2.0 -->
 			<dependency>
