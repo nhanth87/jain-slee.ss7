@@ -7,7 +7,7 @@
 	<parent>
 		<artifactId>restcomm-slee-ra-isup</artifactId>
 		<groupId>org.restcomm.resources</groupId>
-		<version>9.2.4</version>
+		<version>9.2.6</version>
 	</parent>
 
 	<artifactId>restcomm-slee-ra-isup-docs</artifactId>

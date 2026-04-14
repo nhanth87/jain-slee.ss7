@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>restcomm-slee-ra-map</artifactId>
 		<groupId>org.restcomm.resources</groupId>
-		<version>9.2.4</version>
+		<version>9.2.6</version>
 	</parent>
 
 	<artifactId>restcomm-slee-ra-map-ra</artifactId>

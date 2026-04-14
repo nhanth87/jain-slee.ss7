@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.restcomm.servers.jainslee.ss7</groupId>
 		<artifactId>restcomm-slee-ss7</artifactId>
-		<version>9.2.4</version>
+		<version>9.2.6</version>
 	</parent>
 
 	<artifactId>restcomm-slee-ra-lb-lib</artifactId>
