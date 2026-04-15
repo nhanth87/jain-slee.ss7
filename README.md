@@ -38,7 +38,7 @@
 
 <!-- Benefits -->
 - JCTools collections (lock-free)
-- XStream serialization
+- Jackson XML serialization
 - Zero-GC SCTP transport
 ```
 
@@ -74,7 +74,7 @@ public class MapResourceAdaptor {
 │              │                               │
 │  ┌───────────▼───────────┐                   │
 │  │     jSS7-NG 9.2.4      │                   │
-│  │  (JCTools + XStream)   │                   │
+│  │  (JCTools + Jackson)   │                   │
 │  └────────────────────────┘                   │
 │              │                               │
 │  ┌───────────▼───────────┐                   │
