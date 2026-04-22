@@ -9,7 +9,7 @@
 
 	<groupId>org.restcomm.servers.jainslee.ss7</groupId>
 	<artifactId>restcomm-slee-ss7</artifactId>
-	<version>9.2.9</version>
+	<version>9.2.11</version>
 
 	<packaging>pom</packaging>
 
@@ -29,7 +29,7 @@
 	</modules>
 
 	<properties>
-		<ss7.version>9.2.9</ss7.version>
+		<ss7.version>9.2.11</ss7.version>
 		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
 		<sctp.version>2.0.13</sctp.version>
 		<asn.version>2.2.0-143</asn.version>
@@ -37,9 +37,9 @@
 		<jctools.version>4.0.3</jctools.version>
 		<restcomm.slee.ext.version>7.0.70</restcomm.slee.ext.version>
 		<restcomm.load.balancer.version>10.1.0-53</restcomm.load.balancer.version>
-		<java.version>11</java.version>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+		<java.version>8</java.version>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
 
         <maven.du.plugin.jboss5.version>3.0.14</maven.du.plugin.jboss5.version>
         <maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
@@ -228,8 +228,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<source>11</source>
-					<target>11</target>
+					<source>8</source>
+					<target>8</target>
 				</configuration>
 			</plugin>
 		</plugins>
