@@ -5,22 +5,14 @@
 <resource-adaptor-jar>
 	<resource-adaptor id="xmpp_2.0_RA">
 		<description>MAP Resource Adaptor 2.0</description>
-		<resource-adaptor-name>
-			MAPResourceAdaptor
-		</resource-adaptor-name>
+		<resource-adaptor-name>MAPResourceAdaptor</resource-adaptor-name>
 		<resource-adaptor-vendor>org.restcomm</resource-adaptor-vendor>
 		<resource-adaptor-version>2.0</resource-adaptor-version>
 
 		<resource-adaptor-type-ref>
-			<resource-adaptor-type-name>
-				MAPResourceAdaptorType
-			</resource-adaptor-type-name>
-			<resource-adaptor-type-vendor>
-				org.restcomm
-			</resource-adaptor-type-vendor>
-			<resource-adaptor-type-version>
-				2.0
-			</resource-adaptor-type-version>
+			<resource-adaptor-type-name>MAPResourceAdaptorType</resource-adaptor-type-name>
+			<resource-adaptor-type-vendor>org.restcomm</resource-adaptor-type-vendor>
+			<resource-adaptor-type-version>2.0</resource-adaptor-type-version>
 		</resource-adaptor-type-ref>
 
 		<library-ref>
@@ -31,9 +23,7 @@
 
 		<resource-adaptor-classes>
 			<resource-adaptor-class>
-				<resource-adaptor-class-name>
-					org.restcomm.slee.resource.map.MAPResourceAdaptor
-				</resource-adaptor-class-name>
+				<resource-adaptor-class-name>org.restcomm.slee.resource.map.MAPResourceAdaptor</resource-adaptor-class-name>
 			</resource-adaptor-class>
 
 			<resource-adaptor-usage-parameters-interface>
