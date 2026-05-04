@@ -82,6 +82,7 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 	}
 
 	public void close(boolean arg0) throws MAPException {
+		if (this.wrappedDialog == null) throw new MAPException("Dialog has been released");
 		this.wrappedDialog.close(arg0);
 	}
 
@@ -114,6 +115,7 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 	}
 
 	public Long getLocalDialogId() {
+		if (this.wrappedDialog == null) return null;
 		return this.wrappedDialog.getLocalDialogId();
 	}
 	
@@ -138,6 +140,7 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 	}
 
 	public MAPDialogState getState() {
+		if (this.wrappedDialog == null) return MAPDialogState.EXPUNGED;
 		return this.wrappedDialog.getState();
 	}
 
@@ -181,6 +184,7 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 	}
 
 	public void send() throws MAPException {
+		if (this.wrappedDialog == null) throw new MAPException("Dialog has been released");
 		this.wrappedDialog.send();
 	}
 
@@ -281,7 +285,10 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 		
 		if(this.wrappedDialog != null){
 			this.wrappedDialog.setUserObject(null);
-			this.wrappedDialog = null;
+			// JENNY-FIX: Do NOT null out wrappedDialog to prevent NPE race condition
+			// between TCAP dialog timeout and SBB HTTP response processing.
+			// The wrapper will remain valid; getState() returns EXPUNGED when released.
+			// this.wrappedDialog = null;
 		}
 	}
 
