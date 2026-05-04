@@ -79,6 +79,7 @@ public class MAPDialogSupplementaryWrapper extends MAPDialogWrapper<MAPDialogSup
 	}
 
 	public void addProcessUnstructuredSSResponse(long arg0, CBSDataCodingScheme arg1, USSDString arg2) throws MAPException {
+		if (this.wrappedDialog == null) throw new MAPException("Dialog has been released");
 		this.wrappedDialog.addProcessUnstructuredSSResponse(arg0, arg1, arg2);
 	}
 
@@ -107,6 +108,7 @@ public class MAPDialogSupplementaryWrapper extends MAPDialogWrapper<MAPDialogSup
 	}
 
 	public void addUnstructuredSSResponse(long arg0, CBSDataCodingScheme arg1, USSDString arg2) throws MAPException {
+		if (this.wrappedDialog == null) throw new MAPException("Dialog has been released");
 		this.wrappedDialog.addUnstructuredSSResponse(arg0, arg1, arg2);
 	}
 
