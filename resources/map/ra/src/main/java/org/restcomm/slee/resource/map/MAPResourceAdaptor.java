@@ -319,8 +319,10 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	// Configuration parameters //
 	// ////////////////////////////
 	private static final String CONF_MAP_JNDI = "mapJndi";
+	private static final String CONF_FLAT_INDEX_ENABLED = "flatIndexEnabled";
 
 	private String mapJndi = null;
+	private boolean flatIndexEnabled = true;
 	private transient static final Address address = new Address(AddressPlan.IP, "localhost");
 
     private SS7RAExtInterface ss7RAExtInterface = new SS7RAExtImpl();
@@ -432,6 +434,11 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	public void raActive() {
 
+		System.setProperty("jss7.asn.flatIndexEnabled", Boolean.toString(flatIndexEnabled));
+		if (tracer.isInfoEnabled()) {
+			tracer.info("MAP RA flatIndexEnabled=" + flatIndexEnabled);
+		}
+
 		try {
             ObjectName objectName = new ObjectName("org.restcomm.ss7:service=MAPSS7Service");
             Object object = null;
@@ -500,6 +507,12 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				tracer.info("Configuring MAP RA: " + this.resourceAdaptorContext.getEntityName());
 			}
 			this.mapJndi = (String) properties.getProperty(CONF_MAP_JNDI).getValue();
+			Object flatIndexValue = properties.getProperty(CONF_FLAT_INDEX_ENABLED).getValue();
+			if (flatIndexValue instanceof Boolean) {
+				this.flatIndexEnabled = (Boolean) flatIndexValue;
+			} else if (flatIndexValue instanceof String) {
+				this.flatIndexEnabled = Boolean.parseBoolean((String) flatIndexValue);
+			}
 		} catch (Exception e) {
 			tracer.severe("Configuring of MAP RA failed ", e);
 		}
