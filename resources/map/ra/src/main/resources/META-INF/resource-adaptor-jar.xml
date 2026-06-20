@@ -41,6 +41,12 @@
 			<config-property-type>java.lang.String</config-property-type>
 		</config-property>
 		<config-property>
+			<description>Enable jSS7 flat ASN index decode path (sets jss7.asn.flatIndexEnabled JVM property).</description>
+			<config-property-name>flatIndexEnabled</config-property-name>
+			<config-property-type>java.lang.Boolean</config-property-type>
+			<config-property-value>true</config-property-value>
+		</config-property>
+		<config-property>
 			<description>Controls how many times dialog can timeout. '-1' -
 				indicates that dialog will never be released after timeout, othen
 				non negative values indicates how many timeouts may occur before

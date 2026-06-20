@@ -157,6 +157,14 @@ public class TCAPProviderWrapper implements TCAPProvider {
 		return dialogWrapper;
 	}
 
+	@Override
+	public Dialog getDialog(Long localDialogId) {
+		if (this.wrappedProvider == null) {
+			throw new IllegalStateException("RA is has not been activated.");
+		}
+		return this.wrappedProvider.getDialog(localDialogId);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
