@@ -47,6 +47,24 @@
 			<config-property-value>true</config-property-value>
 		</config-property>
 		<config-property>
+			<description>Enable M3UA zero-copy ByteBuf decode (sets jss7.m3ua.byteBufEnabled JVM property).</description>
+			<config-property-name>m3uaByteBufEnabled</config-property-name>
+			<config-property-type>java.lang.Boolean</config-property-type>
+			<config-property-value>true</config-property-value>
+		</config-property>
+		<config-property>
+			<description>Enable SCCP zero-copy ByteBuf decode (sets jss7.sccp.byteBufEnabled JVM property).</description>
+			<config-property-name>sccpByteBufEnabled</config-property-name>
+			<config-property-type>java.lang.Boolean</config-property-type>
+			<config-property-value>true</config-property-value>
+		</config-property>
+		<config-property>
+			<description>Enable Netty direct-buffer ASN encode (sets jss7.asn.nettyEncodeEnabled JVM property).</description>
+			<config-property-name>nettyEncodeEnabled</config-property-name>
+			<config-property-type>java.lang.Boolean</config-property-type>
+			<config-property-value>true</config-property-value>
+		</config-property>
+		<config-property>
 			<description>Controls how many times dialog can timeout. '-1' -
 				indicates that dialog will never be released after timeout, othen
 				non negative values indicates how many timeouts may occur before
