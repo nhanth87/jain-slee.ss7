@@ -22,6 +22,10 @@
 
 package org.restcomm.slee.resource.map;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.lang.management.ManagementFactory;
 import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
@@ -320,9 +324,15 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	// ////////////////////////////
 	private static final String CONF_MAP_JNDI = "mapJndi";
 	private static final String CONF_FLAT_INDEX_ENABLED = "flatIndexEnabled";
+	private static final String CONF_M3UA_BYTE_BUF_ENABLED = "m3uaByteBufEnabled";
+	private static final String CONF_SCCP_BYTE_BUF_ENABLED = "sccpByteBufEnabled";
+	private static final String CONF_NETTY_ENCODE_ENABLED = "nettyEncodeEnabled";
 
 	private String mapJndi = null;
 	private boolean flatIndexEnabled = true;
+	private boolean m3uaByteBufEnabled = true;
+	private boolean sccpByteBufEnabled = true;
+	private boolean nettyEncodeEnabled = true;
 	private transient static final Address address = new Address(AddressPlan.IP, "localhost");
 
     private SS7RAExtInterface ss7RAExtInterface = new SS7RAExtImpl();
@@ -434,10 +444,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	public void raActive() {
 
-		System.setProperty("jss7.asn.flatIndexEnabled", Boolean.toString(flatIndexEnabled));
-		if (tracer.isInfoEnabled()) {
-			tracer.info("MAP RA flatIndexEnabled=" + flatIndexEnabled);
-		}
+		applyJss7IntegrationProperties();
 
 		try {
             ObjectName objectName = new ObjectName("org.restcomm.ss7:service=MAPSS7Service");
@@ -457,16 +464,17 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				}
             }
 
-            if (object instanceof MAPProvider) {
-                this.realProvider = (MAPProvider) object;
-				if (tracer.isInfoEnabled()) {
-					tracer.info("Successfully connected to MAP service[" +
-							this.realProvider.getClass().getCanonicalName() + "]");
-				}
-            } else {
+            this.realProvider = resolveMapProvider(object);
+            if (this.realProvider != null && tracer.isInfoEnabled()) {
+                tracer.info("Successfully connected to MAP service[" +
+                        this.realProvider.getClass().getName() + "]");
+            }
+
+            if (this.realProvider == null) {
 				if (tracer.isSevereEnabled()) {
 					tracer.severe("Failed of connecting to MAP service[org.restcomm.ss7:service=MAPSS7Service]");
 				}
+                return;
             }
 
 			this.realProvider.addMAPDialogListener(this);
@@ -507,17 +515,42 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				tracer.info("Configuring MAP RA: " + this.resourceAdaptorContext.getEntityName());
 			}
 			this.mapJndi = (String) properties.getProperty(CONF_MAP_JNDI).getValue();
-			Object flatIndexValue = properties.getProperty(CONF_FLAT_INDEX_ENABLED).getValue();
-			if (flatIndexValue instanceof Boolean) {
-				this.flatIndexEnabled = (Boolean) flatIndexValue;
-			} else if (flatIndexValue instanceof String) {
-				this.flatIndexEnabled = Boolean.parseBoolean((String) flatIndexValue);
-			}
+			this.flatIndexEnabled = readBooleanProperty(properties, CONF_FLAT_INDEX_ENABLED, true);
+			this.m3uaByteBufEnabled = readBooleanProperty(properties, CONF_M3UA_BYTE_BUF_ENABLED, true);
+			this.sccpByteBufEnabled = readBooleanProperty(properties, CONF_SCCP_BYTE_BUF_ENABLED, true);
+			this.nettyEncodeEnabled = readBooleanProperty(properties, CONF_NETTY_ENCODE_ENABLED, true);
 		} catch (Exception e) {
 			tracer.severe("Configuring of MAP RA failed ", e);
 		}
 
         ss7RAExtInterface.onRaConfigure(properties);
+	}
+
+	private void applyJss7IntegrationProperties() {
+		System.setProperty("jss7.asn.flatIndexEnabled", Boolean.toString(flatIndexEnabled));
+		System.setProperty("jss7.m3ua.byteBufEnabled", Boolean.toString(m3uaByteBufEnabled));
+		System.setProperty("jss7.sccp.byteBufEnabled", Boolean.toString(sccpByteBufEnabled));
+		System.setProperty("jss7.asn.nettyEncodeEnabled", Boolean.toString(nettyEncodeEnabled));
+		if (tracer.isInfoEnabled()) {
+			tracer.info("MAP RA jSS7 integration: flatIndexEnabled=" + flatIndexEnabled
+					+ ", m3uaByteBufEnabled=" + m3uaByteBufEnabled
+					+ ", sccpByteBufEnabled=" + sccpByteBufEnabled
+					+ ", nettyEncodeEnabled=" + nettyEncodeEnabled);
+		}
+	}
+
+	private static boolean readBooleanProperty(ConfigProperties properties, String name, boolean defaultValue) {
+		try {
+			Object value = properties.getProperty(name).getValue();
+			if (value instanceof Boolean) {
+				return (Boolean) value;
+			}
+			if (value instanceof String) {
+				return Boolean.parseBoolean((String) value);
+			}
+		} catch (Exception ignored) {
+		}
+		return defaultValue;
 	}
 
 	public void raInactive() {
@@ -1728,5 +1761,47 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	public MAPResourceAdaptorStatisticsUsageParameters getDefaultUsageParameters() {
 		return this.defaultUsageParameters;
+	}
+
+	/**
+	 * Resolve MAPProvider from MBean/JNDI lookup. WildFly loads SS7 stack from a
+	 * separate module classloader, so instanceof MAPProvider fails even when the
+	 * delegate object is MAPProviderImpl.
+	 */
+	private MAPProvider resolveMapProvider(Object stack) {
+		if (stack == null) {
+			return null;
+		}
+		if (stack instanceof MAPProvider) {
+			return (MAPProvider) stack;
+		}
+		if (!"org.restcomm.protocols.ss7.map.MAPProviderImpl".equals(stack.getClass().getName())) {
+			return null;
+		}
+		final Object delegate = stack;
+		return (MAPProvider) Proxy.newProxyInstance(
+				MAPProvider.class.getClassLoader(),
+				new Class<?>[] { MAPProvider.class },
+				new InvocationHandler() {
+					public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+						Method target = findDelegateMethod(delegate.getClass(), method, args);
+						return target.invoke(delegate, args);
+					}
+				});
+	}
+
+	private static Method findDelegateMethod(Class<?> delegateClass, Method method, Object[] args) throws NoSuchMethodException {
+		if (args == null || args.length == 0) {
+			return delegateClass.getMethod(method.getName(), method.getParameterTypes());
+		}
+		Class<?>[] paramTypes = new Class<?>[args.length];
+		for (int i = 0; i < args.length; i++) {
+			paramTypes[i] = args[i] != null ? args[i].getClass() : method.getParameterTypes()[i];
+		}
+		try {
+			return delegateClass.getMethod(method.getName(), paramTypes);
+		} catch (NoSuchMethodException e) {
+			return delegateClass.getMethod(method.getName(), method.getParameterTypes());
+		}
 	}
 }
