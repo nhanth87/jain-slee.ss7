@@ -9,7 +9,7 @@
 
 	<groupId>org.restcomm.servers.jainslee.ss7</groupId>
 	<artifactId>restcomm-slee-ss7</artifactId>
-	<version>9.2.12</version>
+	<version>9.5.0</version>
 
 	<packaging>pom</packaging>
 
@@ -29,7 +29,7 @@
 	</modules>
 
 	<properties>
-		<ss7.version>9.2.12</ss7.version>
+		<ss7.version>9.5.0</ss7.version>
 		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
 		<sctp.version>2.0.13</sctp.version>
 		<asn.version>2.2.0-143</asn.version>
@@ -184,7 +184,7 @@
 				<artifactId>jctools-core</artifactId>
 				<version>${jctools.version}</version>
 			</dependency>
-			<!-- Force jSS7 9.2.0 -->
+			<!-- Force jSS7 9.5.0 -->
 			<dependency>
 				<groupId>org.restcomm.protocols.ss7</groupId>
 				<artifactId>ss7-parent</artifactId>
